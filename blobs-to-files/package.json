@@ -4,12 +4,7 @@
   "description": "Convert CSV with blobs from SQL Squirrel to files.",
   "main": "index.js",
   "dependencies": {
-    "file-type": "^3.8.0",
-    "fs": "^0.0.2"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "file-type": "^3.8.0"
   },
   "author": "Rafael Correia <rafaelnominato at gmail dot com>",
   "license": "ISC"

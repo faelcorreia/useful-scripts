@@ -9,3 +9,11 @@ Converts the CSV with blobs exported from SQL Squirrel to the files. The CSV mus
 **Usage**
 
 `node index.js filename`
+
+#### 2. user-pass-generator
+
+Generate a list of random credentials using the wordlist name.lst.
+
+**Usage**
+
+`node index.js`
