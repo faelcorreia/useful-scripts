@@ -12,8 +12,16 @@ Converts the CSV with blobs exported from SQL Squirrel to the files. The CSV mus
 
 #### 2. user-pass-generator
 
-Generate a list of random credentials using the wordlist name.lst.
+Generate a list of random credentials using the given wordlist.
 
 **Usage**
 
-`node index.js`
+`node index.js filename`
+
+#### 3. bytes-histogram
+
+Generate a table with the quantity of each byte of a given file.
+
+**Usage**
+
+`node index.js filename`

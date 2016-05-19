@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Generate random users and passwords.",
   "main": "index.js",
-  "author": "Rafael Correia <rafaelnominato at gmail dot com>",
+  "author": "Adriano Monteiro and Rafael Correia <rafaelnominato at gmail dot com> ",
   "license": "ISC"
 }
