@@ -13,32 +13,32 @@ if (process.argv.length == 3) {
 		function readNextChunk() {
 			fs.read(fd, buffer, 0, chunkSize, null, function(err, nread) {
 				if (err) throw err
-
 				if (nread === 0) {
 					fs.close(fd, function(err) {
 						if (err) throw err
 					})
 					printMap()
-					return
 				}
-				var data
-				if (nread < chunkSize)
-					data = buffer.slice(0, nread)
-				else
-					data = buffer
-				for (var i = 0; i < 1024; i++) {
-					map[data[i]]++
+				else {
+					var data
+					if (nread < chunkSize)
+						data = buffer.slice(0, nread)
+					else
+						data = buffer
+					for (var i = 0; i < 1024; i++) {
+						map[data[i]]++
+					}
+					readNextChunk()
 				}
-				readNextChunk()
 			})
 		}
 		function printMap() {
 				console.log('CharCode;Quantity')
-				for (var i = 0; i < 256; i++) {					
+				for (var i = 0; i < 256; i++) {
 					console.log(i + ';' + map[i])
 				}
 		}
-		readNextChunk()		
+		readNextChunk()
 	})
 }
 else {
