@@ -1,0 +1,12 @@
+{
+  "name": "isa-export-parser",
+  "version": "1.0.0",
+  "description": "Convert ISA Server 2006 Export to CSV file.",
+  "main": "index.js",
+  "author": "Rafael Correia <rafaelnominato at gmail dot com>",
+  "license": "ISC",
+  "dependencies": {
+    "clipboard": "^1.5.12",
+    "xml2js": "^0.4.17"
+  }
+}

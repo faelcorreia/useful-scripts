@@ -1,0 +1,33 @@
+{
+    "name": "fpc4:EnterpriseNetwork",
+    "attrs": [
+        "StorageName"
+    ],
+    "needValue": false,
+    "childs": [{
+        "name": "fpc4:Name",
+        "attrs": [],
+        "needValue": true,
+        "childs": []
+    }, {
+        "name": "fpc4:IpRangeSet",
+        "attrs": [],
+        "needValue": false,
+        "childs": [{
+            "name": "fpc4:IpRangeEntry",
+            "attrs": [],
+            "needValue": false,
+            "childs": [{
+                "name": "fpc4:IPFrom",
+                "attrs": [],
+                "needValue": true,
+                "childs": []
+            }, {
+                "name": "fpc4:IPTo",
+                "attrs": [],
+                "needValue": true,
+                "childs": []
+            }]
+        }]
+    }]
+}

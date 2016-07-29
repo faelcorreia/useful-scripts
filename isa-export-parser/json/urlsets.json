@@ -1,0 +1,28 @@
+{
+    "name": "fpc4:URLSet",
+    "attrs": [
+        "StorageName"
+    ],
+    "needValue": false,
+    "childs": [{
+        "name": "fpc4:Name",
+        "attrs": [],
+        "needValue": true,
+        "childs": []
+    }, {
+        "name": "fpc4:Predefined",
+        "attrs": [],
+        "needValue": true,
+        "childs": []
+    }, {
+        "name": "fpc4:URLStrings",
+        "attrs": [],
+        "needValue": false,
+        "childs": [{
+            "name": "fpc4:Str",
+            "attrs": [],
+            "needValue": true,
+            "childs":[]
+        }]
+    }]
+}
