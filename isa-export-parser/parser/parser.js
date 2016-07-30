@@ -8,6 +8,8 @@ var Type = Object.freeze({
 var parseXML = function(xml, type, callback) {
     parseString(xml, function(err, result) {
         var element, model
+        var header = []
+        var lists = [[]]
         if (type == 0) {
             element = result['fpc4:Root']['fpc4:Enterprise'][0]['fpc4:Policies'][0]['fpc4:Policy'][0]['fpc4:PolicyRules'][0]
             model = require('../json/policies.json')
@@ -20,30 +22,61 @@ var parseXML = function(xml, type, callback) {
             element = result['fpc4:Root']['fpc4:Enterprise'][0]['fpc4:NetConfig'][0]['fpc4:EnterpriseNetworks'][0]
             model = require('../json/enterprisenetworks.json')
         }
-        callback(parseXMLRecursive(element, model, null, [], 0))
+        var parsed = {}
+        parseXMLRecursive(element, model, parsed, 0, lists, header)
+        console.log(header)
+        console.log(lists)
+        callback(parsed)
     })
 }
-var parseXMLRecursive = function(element, model, parsed, i) {
+var parseXMLRecursive = function(element, model, parsed, i, lists, header) {
     if (parsed === null)
         parsed = {}
-    parsed[model.name] = []
-    if (typeof(element[model.name]) !== 'undefined') {
-        element[model.name].forEach(function(elementChild) {
-            var obj = {}
+    parsed[model.tag] = []
+    if (typeof(element[model.tag]) !== 'undefined') {
+        element[model.tag].forEach(function(elementChild) {
+            var obj = {
+                attrs:[]
+            }
             model.attrs.forEach(function(attr) {
-                obj[attr] = elementChild['$'][attr]
+                var newAttr = {}
+                newAttr[attr.tag] = elementChild['$'][attr.tag]
+                obj.attrs.push(newAttr)
+
+                if (header.indexOf(attr.label) <= -1) {
+                    header[i] = attr.label
+                    lists.forEach(function(list) {
+                        list[i] = newAttr[attr.tag]
+                    })
+                }
+                else {
+
+                }
+                i++             
             })
             if (model.needValue) {
-                obj['value'] = elementChild['_']
+                obj.value = elementChild['_']
+                if (header.indexOf(model.label) <= -1) {
+                    header[i] = model.label
+                    lists.forEach(function(list) {
+                        list[i] = obj.value
+                    })
+                }   
+                else {
+                
+                }
+                i++
             }
             obj.childs = {}
-            model['childs'].forEach(function(modelChild) {
-                parseXMLRecursive(elementChild, modelChild, obj.childs, i + 1)
-            })
-            parsed[model.name].push(obj)
+            if (typeof(model['childs']) !== 'undefined') {
+                model['childs'].forEach(function(modelChild) {
+                    i = parseXMLRecursive(elementChild, modelChild, obj.childs, i, lists, header)
+                })
+            }
+            parsed[model.tag].push(obj)
         })
     }
-    return parsed
+    return i
 }
 
 module.exports = {
