@@ -12,6 +12,9 @@ if (process.argv.length == 3) {
         }
 
         var outs = [{
+            scheme: "policies.json",
+            file: "parsed_policies.json"
+        }, {
             scheme: "urlsets.json",
             file: "parsed_urlsets.json"
         }, {
