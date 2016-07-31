@@ -7,23 +7,26 @@ if (process.argv.length == 3) {
         if (err) {
             return console.log(err)
         }
-        if (!fs.existsSync('out')) {
-            fs.mkdirSync('out')
+        if (!fs.existsSync("out")) {
+            fs.mkdirSync("out")
         }
-        parser.parseXML(data, parser.Type.URL_SETS, function(parsed) {
-            fs.writeFile("out/parsed_urlsets.json", JSON.stringify(parsed.csv, null, 2), function(err) {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log("out/parsed_urlsets.json saved.");
-            })
-        })
-        parser.parseXML(data, parser.Type.ENTERPRISE_NETWORKS, function(parsed) {
-            fs.writeFile("out/parsed_enterprisenetworks.json", JSON.stringify(parsed.csv, null, 2), function(err) {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log("out/parsed_enterprisenetworks.json saved.");
+
+        var outs = [{
+            scheme: "urlsets.json",
+            file: "parsed_urlsets.json"
+        }, {
+            scheme: "enterprisenetworks.json",
+            file: "parsed_enterprisenetworks.json"
+        }]
+
+        outs.forEach(function(out) {
+            parser.parseXML(data, out.scheme, function(parsed) {
+                fs.writeFile("out/" + out.file, JSON.stringify(parsed.csv, null, 2), function(err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log("out/" + out.file + " saved.");
+                })
             })
         })
     })

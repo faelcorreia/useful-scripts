@@ -1,29 +1,13 @@
 var parseString = require('xml2js').parseString
 
-var Type = Object.freeze({
-    POLICIES: 0,
-    URL_SETS: 1,
-    ENTERPRISE_NETWORKS: 2
-})
-var parseXML = function(xml, type, callback) {
+var parseXML = function(xml, scheme, callback) {
     parseString(xml, function(err, result) {
-        var element, model
+        var model = require('../scheme/' + scheme)
         var header = []
         var lists = [header]
         var json = {}
-        if (type == Type.POLICIES) {
-            element = result['fpc4:Root']['fpc4:Enterprise'][0]['fpc4:Policies'][0]['fpc4:Policy'][0]['fpc4:PolicyRules'][0]
-            model = require('../scheme/policies.json')
-        }
-        if (type == Type.URL_SETS) {
-            element = result['fpc4:Root']['fpc4:Enterprise'][0]['fpc4:RuleElements'][0]['fpc4:URLSets'][0]
-            model = require('../scheme/urlsets.json')
-        }
-        if (type == Type.ENTERPRISE_NETWORKS) {
-            element = result['fpc4:Root']['fpc4:Enterprise'][0]['fpc4:NetConfig'][0]['fpc4:EnterpriseNetworks'][0]
-            model = require('../scheme/enterprisenetworks.json')
-        }
-        parseXMLRecursive(element, model, json, 0, lists, [], header)
+
+        parseXMLRecursive(result, model, json, 0, lists, [], header)
         var parsed = {
             json: json,
             csv: lists
@@ -37,6 +21,9 @@ var parseXMLRecursive = function(element, model, parsed, cont, lists, list, head
     parsed[model.tag] = []
     cont = 0
     if (typeof(element[model.tag]) !== 'undefined') {
+        if (typeof(element[model.tag].forEach) === 'undefined') {
+            element[model.tag] = [element[model.tag]]
+        }
         element[model.tag].forEach(function(elementChild, index) {
             var obj = {
                 attrs: []
@@ -87,7 +74,6 @@ var parseXMLRecursive = function(element, model, parsed, cont, lists, list, head
 }
 
 module.exports = {
-    Type: Type,
     parseXML: parseXML,
     parseXMLRecursive: parseXMLRecursive
 }
