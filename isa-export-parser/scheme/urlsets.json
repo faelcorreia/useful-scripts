@@ -1,32 +1,37 @@
 {
     "tag": "fpc4:URLSet",
     "attrs": [{
-        "tag" : "StorageName",
-        "label" : "ID"
+        "tag": "StorageName",
+        "label": "ID"
     }],
     "needValue": false,
+    "newLine": true,
     "childs": [{
         "tag": "fpc4:Name",
-        "label" : "Name",
+        "label": "Name",
         "attrs": [],
         "needValue": true,
+        "newLine": false,
         "childs": []
     }, {
         "tag": "fpc4:Predefined",
-        "label" : "Predefined",
+        "label": "Predefined",
         "attrs": [],
         "needValue": true,
+        "newLine": false,
         "childs": []
     }, {
         "tag": "fpc4:URLStrings",
         "attrs": [],
         "needValue": false,
+        "newLine": false,
         "childs": [{
             "tag": "fpc4:Str",
-            "label":"URL",
+            "label": "URL",
             "attrs": [],
             "needValue": true,
-            "childs":[]
+            "newLine": true,
+            "childs": []
         }]
     }]
 }

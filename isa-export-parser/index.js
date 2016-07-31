@@ -11,7 +11,7 @@ if (process.argv.length == 3) {
             fs.mkdirSync('out')
         }
         parser.parseXML(data, parser.Type.URL_SETS, function(parsed) {
-            fs.writeFile("out/parsed_urlsets.json", JSON.stringify(parsed, null, 2), function(err) {
+            fs.writeFile("out/parsed_urlsets.json", JSON.stringify(parsed.csv, null, 2), function(err) {
                 if (err) {
                     return console.log(err);
                 }
@@ -19,7 +19,7 @@ if (process.argv.length == 3) {
             })
         })
         parser.parseXML(data, parser.Type.ENTERPRISE_NETWORKS, function(parsed) {
-            fs.writeFile("out/parsed_enterprisenetworks.json", JSON.stringify(parsed, null, 2), function(err) {
+            fs.writeFile("out/parsed_enterprisenetworks.json", JSON.stringify(parsed.csv, null, 2), function(err) {
                 if (err) {
                     return console.log(err);
                 }
