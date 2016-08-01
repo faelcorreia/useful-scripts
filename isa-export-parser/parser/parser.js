@@ -29,22 +29,25 @@ var parseXMLRecursive = function(element, model, parsed, cont, lists, list, head
                 attrs: []
             }
             model.attrs.forEach(function(attr) {
-                var newAttr = {}
-                newAttr[attr.tag] = elementChild['$'][attr.tag]
-                obj.attrs.push(newAttr)
-                list.push(newAttr[attr.tag])
-                cont++
                 if (header.indexOf(attr.label) <= -1) {
                     header.push(attr.label)
                 }
+                var index = header.indexOf(attr.label)
+                var newAttr = {}
+                newAttr[attr.tag] = elementChild['$'][attr.tag]
+                obj.attrs.push(newAttr)
+                list[index] = newAttr[attr.tag]
+                cont++
+
             })
             if (model.needValue) {
-                obj.value = elementChild['_']
-                list.push(obj.value)
-                cont++
                 if (header.indexOf(model.label) <= -1) {
                     header.push(model.label)
                 }
+                var index = header.indexOf(model.label)
+                obj.value = elementChild['_']
+                list[index] = obj.value
+                cont++
             }
             obj.childs = {}
             if (typeof(model['childs']) !== 'undefined') {
