@@ -1,5 +1,6 @@
 var fs = require('fs')
 var parser = require('./parser/parser.js')
+var parserPolicies = require('./parser/parser_policies.js')
 
 if (process.argv.length == 3) {
     var file = process.argv[2]
@@ -32,8 +33,6 @@ if (process.argv.length == 3) {
         }, {
             scheme: "proxyscheduletemplates"
         }, {
-            scheme: "policies"
-        }, {
             scheme: "urlsets"
         }, {
             scheme: "usersets"
@@ -54,6 +53,15 @@ if (process.argv.length == 3) {
                     }
                     console.log("out/csv/parsed_" + out.scheme + ".csv saved.");
                 })
+            })
+        })
+
+        parserPolicies.parseXML(data, function(parsed) {
+            fs.writeFile("out/csv/parsed_policies.csv", parsed.csv, function(err) {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log("out/csv/parsed_policies.csv saved.");
             })
         })
     })

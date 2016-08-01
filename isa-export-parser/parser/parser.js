@@ -117,5 +117,5 @@ var parseXMLRecursive = function(element, model, parsed, cont, lists, list, head
 
 module.exports = {
     parseXML: parseXML,
-    parseXMLRecursive: parseXMLRecursive
+    listsToCsv,listsToCsv
 }
