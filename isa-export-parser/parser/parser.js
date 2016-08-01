@@ -5,7 +5,7 @@ var parseXML = function(xml, scheme, callback) {
     parseString(xml, function(err, result) {
         var model = require('../scheme/' + scheme)
         var header = []
-        var lists = [header]
+        var lists = []
         var json = {}
         var listPos = {
             pos: 0
@@ -14,18 +14,44 @@ var parseXML = function(xml, scheme, callback) {
         parseXMLRecursive(result, model, json, 0, lists, [], header, listPos)
         var parsed = {
             json: json,
-            csv: lists
+            csv: listsToCsv(header, lists)
         }
         callback(parsed)
     })
 }
+
+var listsToCsv = function(header, lists) {
+    var csv = listToCsv(header, header.length, ";") + "\n"
+    lists.forEach(function(list, i) {
+        csv += listToCsv(list, header.length, ";") + "\n"
+    })
+    return csv
+}
+
+var listToCsv = function(list, size, char) {
+    var csv = ""
+    for (var i = 0; i < size; i++) {
+        var value
+        if (typeof(list[i]) == "undefined") {
+            value = ""
+        } else {
+            value = list[i]
+        }
+        csv += "\"" + value + "\""
+        if (i + 1 < size) {
+            csv += char
+        }
+    }
+    return csv
+}
+
 var parseXMLRecursive = function(element, model, parsed, cont, lists, list, header, listPos) {
     if (parsed === null)
         parsed = {}
     parsed[model.tag] = []
     cont = 0
     if (typeof(element[model.tag]) !== 'undefined') {
-        if (typeof(element[model.tag].forEach) === 'undefined') {
+        if (!_.isArray(element[model.tag])) {
             element[model.tag] = [element[model.tag]]
         }
         element[model.tag].forEach(function(elementChild, index) {
@@ -71,7 +97,7 @@ var parseXMLRecursive = function(element, model, parsed, cont, lists, list, head
                 if (!exists) {
                     lists.push(list)
                 }
-                var listTmp = JSON.parse(JSON.stringify(list))
+                var listTmp = _.cloneDeep(list)
 
                 if (index + 1 < element[model.tag].length) {
                     var contTmp = cont

@@ -1,0 +1,48 @@
+{
+    "tag": "fpc4:Root",
+    "attrs": [],
+    "needValue": false,
+    "newLine": false,
+    "childs": [{
+        "tag": "fpc4:Enterprise",
+        "attrs": [],
+        "needValue": false,
+        "newLine": false,
+        "childs": [{
+            "tag": "fpc4:RuleElements",
+            "attrs": [],
+            "needValue": false,
+            "newLine": false,
+            "childs": [{
+                "tag": "fpc4:ProxyScheduleTemplates",
+                "attrs": [],
+                "needValue": false,
+                "newLine": false,
+                "childs": [{
+                    "tag": "fpc4:ProxyScheduleTemplate",
+                    "attrs": [{
+                        "tag": "StorageName",
+                        "label": "ID"
+                    }],
+                    "needValue": false,
+                    "newLine": true,
+                    "childs": [{
+                        "tag": "fpc4:Name",
+                        "label": "Name",
+                        "attrs": [],
+                        "needValue": true,
+                        "newLine": false,
+                        "childs": []
+                    }, {
+                        "tag": "fpc4:ScheduleTemplate",
+                        "label": "Schedule Template",
+                        "attrs": [],
+                        "needValue": true,
+                        "newLine": false,
+                        "childs": []
+                    }]
+                }]
+            }]
+        }]
+    }]
+}

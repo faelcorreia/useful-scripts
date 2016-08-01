@@ -10,31 +10,49 @@ if (process.argv.length == 3) {
         if (!fs.existsSync("out")) {
             fs.mkdirSync("out")
         }
+        if (!fs.existsSync("out/json")) {
+            fs.mkdirSync("out/json")
+        }
+        if (!fs.existsSync("out/csv")) {
+            fs.mkdirSync("out/csv")
+        }
 
         var outs = [{
-            scheme: "policies.json",
-            file: "parsed_policies.json"
+            scheme: "addressranges",
         }, {
-            scheme: "urlsets.json",
-            file: "parsed_urlsets.json"
+            scheme: "computers"
         }, {
-            scheme: "domainnamesets.json",
-            file: "parsed_domainnamesets.json"
+            scheme: "computersets"
         }, {
-            scheme: "usersets.json",
-            file: "parsed_usersets.json"
+            scheme: "domainnamesets"
         }, {
-            scheme: "enterprisenetworks.json",
-            file: "parsed_enterprisenetworks.json"
+            scheme: "enterprisenetworks"
+        }, {
+            scheme: "protocols"
+        }, {
+            scheme: "proxyscheduletemplates"
+        }, {
+            scheme: "policies"
+        }, {
+            scheme: "urlsets"
+        }, {
+            scheme: "usersets"
         }]
 
         outs.forEach(function(out) {
-            parser.parseXML(data, out.scheme, function(parsed) {
-                fs.writeFile("out/" + out.file, JSON.stringify(parsed.csv, null, 2), function(err) {
+            parser.parseXML(data, out.scheme + ".json", function(parsed) {
+                fs.writeFile("out/json/parsed_" + out.scheme + ".json", JSON.stringify(parsed.json, null, 2), function(err) {
                     if (err) {
                         return console.log(err);
                     }
-                    console.log("out/" + out.file + " saved.");
+                    console.log("out/json/parsed_" + out.scheme + ".json saved.");
+                })
+
+                fs.writeFile("out/csv/parsed_" + out.scheme + ".csv", parsed.csv, function(err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log("out/csv/parsed_" + out.scheme + ".csv saved.");
                 })
             })
         })
