@@ -1,4 +1,5 @@
 var parseString = require('xml2js').parseString
+var _ = require('lodash');
 
 var parseXML = function(xml, scheme, callback) {
     parseString(xml, function(err, result) {
@@ -6,8 +7,11 @@ var parseXML = function(xml, scheme, callback) {
         var header = []
         var lists = [header]
         var json = {}
+        var listPos = {
+            pos: 0
+        }
 
-        parseXMLRecursive(result, model, json, 0, lists, [], header)
+        parseXMLRecursive(result, model, json, 0, lists, [], header, listPos)
         var parsed = {
             json: json,
             csv: lists
@@ -15,7 +19,7 @@ var parseXML = function(xml, scheme, callback) {
         callback(parsed)
     })
 }
-var parseXMLRecursive = function(element, model, parsed, cont, lists, list, header) {
+var parseXMLRecursive = function(element, model, parsed, cont, lists, list, header, listPos) {
     if (parsed === null)
         parsed = {}
     parsed[model.tag] = []
@@ -52,12 +56,21 @@ var parseXMLRecursive = function(element, model, parsed, cont, lists, list, head
             obj.childs = {}
             if (typeof(model['childs']) !== 'undefined') {
                 model['childs'].forEach(function(modelChild) {
-                    cont += parseXMLRecursive(elementChild, modelChild, obj.childs, cont, lists, list, header)
+                    cont += parseXMLRecursive(elementChild, modelChild, obj.childs, cont, lists, list, header, listPos)
                 })
             }
             parsed[model.tag].push(obj)
             if (model.newLine) {
-                lists.push(list)
+                var exists = false
+                lists.forEach(function(l) {
+                    if (_.isEqual(l, list)) {
+                        exists = true
+                    }
+                })
+
+                if (!exists) {
+                    lists.push(list)
+                }
                 var listTmp = JSON.parse(JSON.stringify(list))
 
                 if (index + 1 < element[model.tag].length) {

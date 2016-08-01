@@ -18,6 +18,9 @@ if (process.argv.length == 3) {
             scheme: "urlsets.json",
             file: "parsed_urlsets.json"
         }, {
+            scheme: "domainnamesets.json",
+            file: "parsed_domainnamesets.json"
+        }, {
             scheme: "usersets.json",
             file: "parsed_usersets.json"
         }, {
