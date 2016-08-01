@@ -9,7 +9,7 @@ var parseXML = function(xml, callback) {
             "SourcesComputerSets", "SourceEnterpriseNetworks", "DestinationNetworkSets",
             "DestinationComputers", "DestinationAddressRanges", "DestinationSubnets",
             "DestinationComputerSets", "DestinationEnterpriseNetworks", "DestinationDomainNameSets",
-            "ProtocolsUsed", "ContentTypeSetsUsed", "URLSet", "UserSets"
+            "ProtocolsUsed", "ContentTypeSetsUsed", "URLSet", "UserSets", "ScheduleUsed"
         ]
         var policies = []
         var element = result["fpc4:Root"]["fpc4:Enterprise"][0]["fpc4:Policies"][0]["fpc4:Policy"][0]["fpc4:PolicyRules"][0]["fpc4:PolicyRule"]
@@ -43,11 +43,15 @@ var parseXML = function(xml, callback) {
                         default:
                             break
                     }
+                    policy[i] = ""
                     if (typeof(ref["fpc4:Ref"]) !== "undefined") {
-                        policy[i] = ref["fpc4:Ref"][0]["fpc4:Name"][0]["_"]
+                        ref["fpc4:Ref"].forEach(function(r, index) {
+                            policy[i] += r["fpc4:Name"][0]["_"] + (index + 1 < ref["fpc4:Ref"].length ? "|" : "")
+                        })
                     }
                 })
             }
+
             if (typeof(policyRule["fpc4:AccessProperties"]) !== "undefined") {
                 if (typeof(policyRule["fpc4:AccessProperties"][0]["fpc4:SelectionIPs"]) !== "undefined") {
                     policyRule["fpc4:AccessProperties"][0]["fpc4:SelectionIPs"][0]["fpc4:Refs"].forEach(function(ref) {
@@ -74,11 +78,15 @@ var parseXML = function(xml, callback) {
                             default:
                                 break
                         }
+                        policy[i] = ""
                         if (typeof(ref["fpc4:Ref"]) !== "undefined") {
-                            policy[i] = ref["fpc4:Ref"][0]["fpc4:Name"][0]["_"]
+                            ref["fpc4:Ref"].forEach(function(r, index) {
+                                policy[i] += r["fpc4:Name"][0]["_"] + (index + 1 < ref["fpc4:Ref"].length ? "|" : "")
+                            })
                         }
                     })
                 }
+
                 if (typeof(policyRule["fpc4:AccessProperties"][0]["fpc4:Refs"]) !== "undefined") {
                     policyRule["fpc4:AccessProperties"][0]["fpc4:Refs"].forEach(function(ref) {
                         var i
@@ -98,15 +106,22 @@ var parseXML = function(xml, callback) {
                             case "UserSets":
                                 i = 19
                                 break
+                            case "ScheduleUsed":
+                                i = 20
+                                break
                             default:
                                 break
                         }
+                        policy[i] = ""
                         if (typeof(ref["fpc4:Ref"]) !== "undefined") {
-                            policy[i] = ref["fpc4:Ref"][0]["fpc4:Name"][0]["_"]
+                            ref["fpc4:Ref"].forEach(function(r, index) {
+                                policy[i] += r["fpc4:Name"][0]["_"] + (index + 1 < ref["fpc4:Ref"].length ? "|" : "")
+                            })
                         }
                     })
                 }
             }
+
             policies.push(policy)
         })
         callback({
