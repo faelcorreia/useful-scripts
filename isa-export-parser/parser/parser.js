@@ -79,10 +79,10 @@ var parseXMLRecursive = function(element, model, parsed, cont, lists, list, head
                 list[index] = obj.value
                 cont++
             }
-            obj.childs = {}
-            if (typeof(model['childs']) !== 'undefined') {
-                model['childs'].forEach(function(modelChild) {
-                    cont += parseXMLRecursive(elementChild, modelChild, obj.childs, cont, lists, list, header, listPos)
+            obj.children = {}
+            if (typeof(model['children']) !== 'undefined') {
+                model['children'].forEach(function(modelChild) {
+                    cont += parseXMLRecursive(elementChild, modelChild, obj.children, cont, lists, list, header, listPos)
                 })
             }
             parsed[model.tag].push(obj)

@@ -3,22 +3,22 @@
     "attrs": [],
     "needValue": false,
     "newLine": false,
-    "childs": [{
+    "children": [{
         "tag": "fpc4:Enterprise",
         "attrs": [],
         "needValue": false,
         "newLine": false,
-        "childs": [{
+        "children": [{
             "tag": "fpc4:RuleElements",
             "attrs": [],
             "needValue": false,
             "newLine": false,
-            "childs": [{
+            "children": [{
                 "tag": "fpc4:ComputerSets",
                 "attrs": [],
                 "needValue": false,
                 "newLine": false,
-                "childs": [{
+                "children": [{
                     "tag": "fpc4:ComputerSet",
                     "attrs": [{
                         "tag": "StorageName",
@@ -26,33 +26,33 @@
                     }],
                     "needValue": false,
                     "newLine": true,
-                    "childs": [{
+                    "children": [{
                         "tag": "fpc4:Name",
                         "label": "Name",
                         "attrs": [],
                         "needValue": true,
                         "newLine": false,
-                        "childs": []
+                        "children": []
                     }, {
                         "tag": "fpc4:Description",
                         "label": "Description",
                         "attrs": [],
                         "needValue": true,
                         "newLine": false,
-                        "childs": []
+                        "children": []
                     }, {
                         "tag": "fpc4:Predefined",
                         "label": "Predefined",
                         "attrs": [],
                         "needValue": true,
                         "newLine": false,
-                        "childs": []
+                        "children": []
                     }, {
                         "tag": "fpc4:AddressRanges",
                         "attrs": [],
                         "needValue": false,
                         "newLine": false,
-                        "childs": [{
+                        "children": [{
                             "tag": "fpc4:AddressRange",
                             "attrs": [{
                                 "tag": "StorageName",
@@ -60,34 +60,34 @@
                             }],
                             "needValue": false,
                             "newLine": true,
-                            "childs": [{
+                            "children": [{
                                 "tag": "fpc4:Name",
                                 "label": "Name",
                                 "attrs": [],
                                 "needValue": true,
                                 "newLine": false,
-                                "childs": []
+                                "children": []
                             }, {
                                 "tag": "fpc4:Description",
                                 "label": "Description",
                                 "attrs": [],
                                 "needValue": true,
                                 "newLine": false,
-                                "childs": []
+                                "children": []
                             }, {
                                 "tag": "fpc4:IPFrom",
                                 "label": "IP From",
                                 "attrs": [],
                                 "needValue": true,
                                 "newLine": false,
-                                "childs": []
+                                "children": []
                             }, {
                                 "tag": "fpc4:IPTo",
                                 "label": "IP To",
                                 "attrs": [],
                                 "needValue": true,
                                 "newLine": false,
-                                "childs": []
+                                "children": []
                             }]
                         }]
                     }]

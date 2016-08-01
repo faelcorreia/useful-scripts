@@ -3,22 +3,22 @@
     "attrs": [],
     "needValue": false,
     "newLine": false,
-    "childs": [{
+    "children": [{
         "tag": "fpc4:Enterprise",
         "attrs": [],
         "needValue": false,
         "newLine": false,
-        "childs": [{
+        "children": [{
             "tag": "fpc4:RuleElements",
             "attrs": [],
             "needValue": false,
             "newLine": false,
-            "childs": [{
+            "children": [{
                 "tag": "fpc4:UserSets",
                 "attrs": [],
                 "needValue": false,
                 "newLine": false,
-                "childs": [{
+                "children": [{
                     "tag": "fpc4:UserSet",
                     "attrs": [{
                         "tag": "StorageName",
@@ -26,44 +26,44 @@
                     }],
                     "needValue": false,
                     "newLine": true,
-                    "childs": [{
+                    "children": [{
                         "tag": "fpc4:Name",
                         "label": "Name",
                         "attrs": [],
                         "needValue": true,
                         "newLine": false,
-                        "childs": []
+                        "children": []
                     }, {
                         "tag": "fpc4:Description",
                         "label": "Description",
                         "attrs": [],
                         "needValue": true,
                         "newLine": false,
-                        "childs": []
+                        "children": []
                     }, {
                         "tag": "fpc4:Predefined",
                         "label": "Predefined",
                         "attrs": [],
                         "needValue": true,
                         "newLine": false,
-                        "childs": []
+                        "children": []
                     }, {
                         "tag": "fpc4:Accounts",
                         "attrs": [],
                         "needValue": false,
                         "newLine": false,
-                        "childs": [{
+                        "children": [{
                             "tag": "fpc4:Account",
                             "attrs": [],
                             "needValue": false,
                             "newLine": true,
-                            "childs": [{
+                            "children": [{
                                 "tag": "fpc4:AccountSid",
                                 "label": "SID",
                                 "attrs": [],
                                 "needValue": true,
                                 "newLine": false,
-                                "childs": []
+                                "children": []
                             }]
                         }]
                     }]
