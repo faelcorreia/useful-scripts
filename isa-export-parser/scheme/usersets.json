@@ -34,20 +34,6 @@
                         "newLine": false,
                         "children": []
                     }, {
-                        "tag": "fpc4:Description",
-                        "label": "Description",
-                        "attrs": [],
-                        "needValue": true,
-                        "newLine": false,
-                        "children": []
-                    }, {
-                        "tag": "fpc4:Predefined",
-                        "label": "Predefined",
-                        "attrs": [],
-                        "needValue": true,
-                        "newLine": false,
-                        "children": []
-                    }, {
                         "tag": "fpc4:Accounts",
                         "attrs": [],
                         "needValue": false,

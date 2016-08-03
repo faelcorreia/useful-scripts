@@ -34,13 +34,6 @@
                         "newLine": false,
                         "children": []
                     }, {
-                        "tag": "fpc4:Predefined",
-                        "label": "Predefined",
-                        "attrs": [],
-                        "needValue": true,
-                        "newLine": false,
-                        "children": []
-                    }, {
                         "tag": "fpc4:URLStrings",
                         "attrs": [],
                         "needValue": false,

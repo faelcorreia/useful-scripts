@@ -1,0 +1,16 @@
+<div>
+    <div class="pure-menu pure-menu-horizontal">
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Policies</a></li>
+            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                <a href="#" id="menuLink1" class="pure-menu-link">Data</a>
+                <ul class="pure-menu-children">
+                    <li class="pure-menu-item" ng-repeat="section in sections">
+                        <a class="pure-menu-link" ui-sref="app.section({'sectionId': $index})">{{section.name}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div ui-view></div>
+</div>

@@ -54,27 +54,10 @@
                         "newLine": false,
                         "children": [{
                             "tag": "fpc4:AddressRange",
-                            "attrs": [{
-                                "tag": "StorageName",
-                                "label": "ID"
-                            }],
+                            "attrs": [],
                             "needValue": false,
-                            "newLine": true,
+                            "newLine": false,
                             "children": [{
-                                "tag": "fpc4:Name",
-                                "label": "Name",
-                                "attrs": [],
-                                "needValue": true,
-                                "newLine": false,
-                                "children": []
-                            }, {
-                                "tag": "fpc4:Description",
-                                "label": "Description",
-                                "attrs": [],
-                                "needValue": true,
-                                "newLine": false,
-                                "children": []
-                            }, {
                                 "tag": "fpc4:IPFrom",
                                 "label": "IP From",
                                 "attrs": [],
