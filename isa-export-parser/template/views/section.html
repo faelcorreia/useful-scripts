@@ -5,7 +5,7 @@
             <th ng-repeat="column in section.header">{{column}}</th>
         </thead>
         <tbody>
-            <tr ng-repeat="line in section.data">
+            <tr id="{{line[0][0]}}" ng-repeat="line in section.data">
                 <td ng-repeat="column in section.header" ng-init="i = $index">
                     <div ng-repeat="val in line[i] track by $index">
                         {{val}}
