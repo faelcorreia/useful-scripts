@@ -50,7 +50,7 @@
                             "label": "URL",
                             "attrs": [],
                             "needValue": true,
-                            "newLine": true,
+                            "newLine": false,
                             "children": []
                         }]
                     }]

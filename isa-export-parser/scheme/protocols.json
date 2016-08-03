@@ -78,7 +78,7 @@
                             "label": "Protocol Connection",
                             "attrs": [],
                             "needValue": false,
-                            "newLine": true,
+                            "newLine": false,
                             "children": [{
                                 "tag": "fpc4:ConnectionType",
                                 "label": "Connection Type",

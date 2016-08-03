@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" ng-app="isa-export-parser">
+
+<head>
+    <meta charset="utf-8">
+    <title>ISA Server Report</title>
+    <meta name="author" content="Rafael Correia">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div ng-controller="AppCtrl">
+        <div ng-repeat="section in sections" ng-include="'views/section.html'" ng-init="data = section.data"></div>
+    </div>
+    <script src="js/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

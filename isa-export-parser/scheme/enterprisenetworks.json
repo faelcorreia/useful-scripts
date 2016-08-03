@@ -42,7 +42,7 @@
                             "tag": "fpc4:IpRangeEntry",
                             "attrs": [],
                             "needValue": false,
-                            "newLine": true,
+                            "newLine": false,
                             "children": [{
                                 "tag": "fpc4:IPFrom",
                                 "label": "IP From",

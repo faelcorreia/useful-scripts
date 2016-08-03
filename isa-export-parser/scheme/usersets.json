@@ -56,7 +56,7 @@
                             "tag": "fpc4:Account",
                             "attrs": [],
                             "needValue": false,
-                            "newLine": true,
+                            "newLine": false,
                             "children": [{
                                 "tag": "fpc4:AccountSid",
                                 "label": "SID",
