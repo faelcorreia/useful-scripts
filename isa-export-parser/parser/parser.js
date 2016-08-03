@@ -10,36 +10,37 @@ var parseXML = function(xml, scheme, callback) {
 
         parseXMLRecursive(element, model, lists, [], header)
         var parsed = {
-            json: [header].concat(lists),
-            csv: listsToCsv(header, lists)
+            csv: listsToCsv(header, lists),
+            json: [header].concat(lists)
         }
         callback(parsed)
     })
 }
 
 var listsToCsv = function(header, lists) {
-    var csv = listToCsv(header, header.length, ";") + "\n"
+    var csv = []
+    csv.push(listToCsv(header, header.length, ";"))
     lists.forEach(function(list, i) {
-        csv += listToCsv(list, header.length, ";") + "\n"
+        csv.push(listToCsv(list, header.length, ";"))
     })
-    return csv
+    return csv.join("\n")
 }
 
 var listToCsv = function(list, size, char) {
-    var csv = ""
+    var csv = []
     for (var i = 0; i < size; i++) {
         var value
-        if (typeof(list[i]) == "undefined") {
+        if (typeof(list[i]) === "undefined") {
             value = ""
         } else {
-            value = list[i]
+            if (_.isArray(list[i]))
+                value = list[i].join("|")
+            else
+                value = list[i]
         }
-        csv += "\"" + value + "\""
-        if (i + 1 < size) {
-            csv += char
-        }
+        csv.push("\"" + value + "\"")
     }
-    return csv
+    return csv.join(char)
 }
 
 var parseXMLRecursive = function(element, model, lists, list, header) {

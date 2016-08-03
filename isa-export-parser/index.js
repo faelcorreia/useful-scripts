@@ -1,6 +1,7 @@
 var fs = require('fs')
 var parser = require('./parser/parser.js')
 var parserPolicies = require('./parser/parser_policies.js')
+var gulp = require('gulp')
 
 if (process.argv.length == 3) {
     var file = process.argv[2]
@@ -17,6 +18,7 @@ if (process.argv.length == 3) {
         if (!fs.existsSync("out/csv")) {
             fs.mkdirSync("out/csv")
         }
+        gulp.src("template/**").pipe(gulp.dest("out/"))
 
         var outs = [{
             scheme: "addressranges",
