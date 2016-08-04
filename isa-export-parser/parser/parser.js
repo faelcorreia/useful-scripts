@@ -8,7 +8,7 @@ var parseXML = function(xml, scheme, callback) {
         var lists = []
         var parsed = {}
 
-        parseXMLRecursive(element, model, lists, [], header)
+        parseXMLRecursive(element, model, lists, [], header, {})
         var parsed = {
             csv: listsToCsv(header, lists),
             json: [header].concat(lists)
@@ -43,12 +43,13 @@ var listToCsv = function(list, size, char) {
     return csv.join(char)
 }
 
-var parseXMLRecursive = function(element, model, lists, list, header) {
+var parseXMLRecursive = function(element, model, lists, list, header, varMap) {
     if (typeof(element[model.tag]) !== 'undefined') {
         if (!_.isArray(element[model.tag])) {
             element[model.tag] = [element[model.tag]]
         }
         element[model.tag].forEach(function(elementChild, index) {
+            //Parse attr
             model.attrs.forEach(function(attr) {
                 if (header.indexOf(attr.label) <= -1) {
                     header.push(attr.label)
@@ -59,11 +60,26 @@ var parseXMLRecursive = function(element, model, lists, list, header) {
                 }
                 list[index].push(elementChild['$'][attr.tag])
             })
+
+            //Parse storeAttrs
+            if (typeof(model.storeAttrs) !== "undefined") {
+                model.storeAttrs.forEach(function(storeAttr) {
+                    varMap[storeAttr] = elementChild['$'][storeAttr]
+                })
+            }
+
+            //Parse value
             if (model.needValue) {
-                if (header.indexOf(model.label) <= -1) {
-                    header.push(model.label)
+                //Parse variable label
+                var label = model.label
+                if (/\{\{.*\}\}/.test(label)) {
+                    label = varMap[label.substring(2, label.length - 2)]
+                    console.log(label)
                 }
-                var index = header.indexOf(model.label)
+                if (header.indexOf(label) <= -1) {
+                    header.push(label)
+                }
+                var index = header.indexOf(label)
                 if (typeof(list[index]) === "undefined") {
                     list[index] = []
                 }
@@ -71,7 +87,7 @@ var parseXMLRecursive = function(element, model, lists, list, header) {
             }
             if (typeof(model['children']) !== 'undefined') {
                 model['children'].forEach(function(modelChild) {
-                    parseXMLRecursive(elementChild, modelChild, lists, list, header)
+                    parseXMLRecursive(elementChild, modelChild, lists, list, header, varMap)
                 })
             }
             if (model.newLine) {

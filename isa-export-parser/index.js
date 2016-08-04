@@ -33,6 +33,8 @@ if (process.argv.length == 3) {
         }, {
             scheme: "networksets"
         }, {
+            scheme: "policies"
+        }, {
             scheme: "protocols"
         }, {
             scheme: "proxyscheduletemplates"
@@ -57,22 +59,6 @@ if (process.argv.length == 3) {
                     }
                     console.log("out/csv/parsed_" + out.scheme + ".csv saved.");
                 })
-            })
-        })
-
-        parserPolicies.parseXML(data, function(parsed) {
-            fs.writeFile("out/json/parsed_policies.json", JSON.stringify(parsed.json, null, 2), function(err) {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log("out/json/parsed_policies.json saved.");
-            })
-
-            fs.writeFile("out/csv/parsed_policies.csv", parsed.csv, function(err) {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log("out/csv/parsed_policies.csv saved.");
             })
         })
     })

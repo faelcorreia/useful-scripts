@@ -95,14 +95,16 @@ angular.module('isa-export-parser', ['ui.router'])
             url: "parsed_policies.json",
         }
 
-        var convertId = function(line, policyPos, sectionPos, namePos) {
+        var convertId = function(line, policyPos, namePos) {
             try {
                 var newValue
                 line[policyPos].forEach(function(obj1, index) {
-                    sections.data[sectionPos].data.forEach(function(obj2) {
-                        if (obj1 === obj2[0][0]) {
-                            newValue = obj2[namePos][0]
-                        }
+                    sections.data.forEach(function(s) {
+                        s.data.forEach(function(obj2) {
+                            if (obj1 === obj2[0][0]) {
+                                newValue = obj2[namePos][0]
+                            }
+                        })
                     })
                     line[policyPos][index] = newValue
                 })
@@ -115,23 +117,14 @@ angular.module('isa-export-parser', ['ui.router'])
             section.header = data[0]
             section.data = data.slice(1, data.length)
             section.data.forEach(function(line) {
-                convertId(line, section.header.indexOf("SourceNetworkSets"), 5, 1)
-                convertId(line, section.header.indexOf("SourceComputers"), 2, 1)
-                convertId(line, section.header.indexOf("SourceAddressRanges"), 0, 1)
-                convertId(line, section.header.indexOf("SourceComputerSets"), 1, 1)
-                convertId(line, section.header.indexOf("SourceEnterpriseNetworks"), 4, 1)
+                convertId(line, section.header.indexOf("Source"), 1)
+                convertId(line, section.header.indexOf("Destination"), 1)
 
-                convertId(line, section.header.indexOf("DestinationNetworkSets"), 5, 1)
-                convertId(line, section.header.indexOf("DestinationComputers"), 2, 1)
-                convertId(line, section.header.indexOf("DestinationAddressRanges"), 0, 1)
-                convertId(line, section.header.indexOf("DestinationComputerSets"), 1, 1)
-                convertId(line, section.header.indexOf("DestinationEnterpriseNetworks"), 4, 1)
-
-                convertId(line, section.header.indexOf("DomainNameSets"), 3, 1)
-                convertId(line, section.header.indexOf("ProtocolsUsed"), 6, 1)
-                convertId(line, section.header.indexOf("URLSet"), 8, 1)
-                convertId(line, section.header.indexOf("UserSets"), 9, 1)
-                convertId(line, section.header.indexOf("ScheduleUsed"), 7, 1)
+                convertId(line, section.header.indexOf("DestinationDomainNameSets"), 1)
+                convertId(line, section.header.indexOf("ProtocolsUsed"), 1)
+                convertId(line, section.header.indexOf("URLSet"), 1)
+                convertId(line, section.header.indexOf("UserSets"), 1)
+                convertId(line, section.header.indexOf("ScheduleUsed"), 1)
             })
             $scope.section = section
         })
