@@ -73,8 +73,7 @@ var parseXMLRecursive = function(element, model, lists, list, header, varMap) {
                 //Parse variable label
                 var label = model.label
                 if (/\{\{.*\}\}/.test(label)) {
-                    label = varMap[label.substring(2, label.length - 2)]
-                    console.log(label)
+                    label = varMap[label.substring(2, label.length - 2)]                    
                 }
                 if (header.indexOf(label) <= -1) {
                     header.push(label)

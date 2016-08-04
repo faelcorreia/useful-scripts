@@ -8,7 +8,8 @@
             <tr id="{{line[0][0]}}" ng-repeat="line in section.data">
                 <td ng-repeat="column in section.header" ng-init="i = $index">
                     <div ng-repeat="val in line[i] track by $index">
-                        {{val}}
+                        <a href="{{'#/app/section/' + val.sectionPos + '#' + val.id}}" ng-if="val.id">{{val.name}}</a>
+                        <span ng-if="!val.name">{{val}}</span>
                     </div>
                 </td>
             </tr>

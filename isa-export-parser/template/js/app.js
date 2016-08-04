@@ -99,10 +99,14 @@ angular.module('isa-export-parser', ['ui.router'])
             try {
                 var newValue
                 line[policyPos].forEach(function(obj1, index) {
-                    sections.data.forEach(function(s) {
+                    sections.data.forEach(function(s, sectionPos) {
                         s.data.forEach(function(obj2) {
                             if (obj1 === obj2[0][0]) {
-                                newValue = obj2[namePos][0]
+                                newValue = {
+                                    id: obj1,
+                                    sectionPos: sectionPos,
+                                    name: obj2[namePos][0]
+                                }
                             }
                         })
                     })

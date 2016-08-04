@@ -1,6 +1,5 @@
 var fs = require('fs')
 var parser = require('./parser/parser.js')
-var parserPolicies = require('./parser/parser_policies.js')
 var gulp = require('gulp')
 
 if (process.argv.length == 3) {
