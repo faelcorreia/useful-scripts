@@ -20,12 +20,12 @@ angular.module('isa-export-parser', ['ui.router'])
         })
 
         .state('app.section', {
-            url: '/section/:sectionId',
+            url: '/section/:sectionId/:id',
             templateUrl: 'views/section.html',
             controller: 'SectionCtrl'
         })
 
-        $urlRouterProvider.otherwise('/app')
+        $urlRouterProvider.otherwise('/app/policies')
     }
 ])
 
@@ -135,8 +135,13 @@ angular.module('isa-export-parser', ['ui.router'])
     }
 ])
 
-.controller('SectionCtrl', ['$scope', '$stateParams', 'Parseds', 'sections',
-    function($scope, $stateParams, Parseds, sections) {
+.controller('SectionCtrl', ['$scope', '$stateParams', 'Parseds', 'sections', '$anchorScroll', '$location',
+    function($scope, $stateParams, Parseds, sections, $anchorScroll, $location) {
         $scope.section = sections.data[$stateParams.sectionId]
+        if (typeof($stateParams.id) !== 'undefined') {
+            $location.hash($stateParams.id)
+            $anchorScroll()
+            $scope.id = $stateParams.id
+        }
     }
 ])
