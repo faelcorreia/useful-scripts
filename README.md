@@ -25,11 +25,3 @@ Generate a table with the quantity of each byte of a given file.
 **Usage**
 
 `node index.js filename`
-
-#### 4. isa-export-parser
-
-Converts a ISA Server 2006 XML Export to CSV file.
-
-**Usage**
-
-`node index.js filename`
